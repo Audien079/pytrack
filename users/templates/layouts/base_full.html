@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="UTF-8" />
+     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+     <!-- Bootstrap Css -->
+     <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
+     <link href="{% static 'cpm/assets/css/bootstrap.min-login.css' %}" id="bootstrap-style" rel="stylesheet" type="text/css" />
+     <link href="{% static 'cpm/assets/css/main-login.css' %}" rel="stylesheet" type="text/css"/>
+     <link href="{% static 'cpm/assets/css/login.css' %}" rel="stylesheet" type="text/css"/>
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
+     <link href="{% static 'cpm/assets/css/custom-login.css' %}" rel="stylesheet" type="text/css" />
+     <style>
+          .signupForm .errorlist li{
+               text-align: left !important;
+          }
+          .signupForm .errorlist{
+               padding-left: 15px;
+          }
+     </style>
+
+    {% block header %}{% endblock %}
+    {% block style %}{% endblock %}
+</head>
+
+<body data-topbar="dark" data-layout="horizontal" data-layout-size="boxed">
+     <div>
+         <div class="signinpage gu">
+          {% block content %}
+          {% endblock %}
+          </div>
+     </div>
+</body>
+{% block modal %}
+{% endblock %}
+
+<script src="{% static 'cpm/assets/js/jquery.min.js' %}"></script>
+
+{% block script %}{% endblock %}
+</body>
+</html>

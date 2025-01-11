@@ -1,0 +1,1568 @@
+body[data-layout="horizontal"] .page-content {
+    padding-right: 40px;
+    padding-left: 40px;
+}
+.topnav {
+    padding: 0 calc(200px / 2);
+}
+.tableActive.nav-pills > li > a.active {
+    color: var(--bs-blue);
+}
+body[data-layout="horizontal"][data-layout-size="boxed"] .navbar-header {
+    max-width: 100%;
+}
+.navbar-header {
+    padding: 0 calc(200px / 2);
+}
+.hide {
+    display: none !important;
+}
+.tdShow td .hide {
+    display: flex !important;
+}
+.tableTab.nav-justified .nav-item {
+    flex-basis: inherit;
+}
+.tableTab.nav-justified .nav-item .active {
+    background-color: var(--bs-blue);
+    color: var(--bs-white);
+}
+.w-300 {
+    width: 300px;
+}
+.wizard .steps .number {
+    width: 28px;
+    height: 28px;
+    line-height: 24px;
+}
+.spendAccordion .accordion-item .accordion-header .accordion-button {
+    background-color: transparent;
+}
+.spendAccordion .accordion-item .accordion-header .accordion-button::after {
+    display: none;
+}
+.accordion-button:not(.collapsed) .collapseIcon {
+    -webkit-transform: rotate(90deg);
+    transform: rotate(90deg);
+}
+
+/* ============ Naimesh Barot CSS ============ */
+.dropdown-menu {
+    max-height: 300px;
+    overflow-y: auto;
+}
+.modal-xxl {
+    max-width: 1600px;
+}
+.modal-xxl.modal-dialog {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.bg-extrasoft {
+    background-color: #f0f1f4 !important;
+}
+.bg-themesoft {
+    background-color: #dcdde2 !important;
+}
+.align-middle td,
+.align-middle th {
+    vertical-align: middle;
+}
+
+.select2-container {
+    display: block;
+}
+.btn-icon {
+    background: transparent;
+    border: 0;
+    padding: 0;
+    box-shadow: none !important;
+}
+.wizard.fullpage > .actions > ul {
+    text-align: center;
+    margin: 30px 0;
+}
+.wizard.fullpage {
+    height: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+}
+.wizard.fullpage > .content {
+    -webkit-box-flex: 1;
+    -ms-flex: 1 0 auto;
+    flex: 1 0 auto;
+    overflow: auto;
+}
+.avatar-btn {
+    border: 0;
+    padding: 0;
+    box-shadow: none;
+}
+.form-check.check-center {
+    display: inline-block;
+}
+table thead.table-light tr th {
+    vertical-align: middle;
+}
+.w-0 {
+    width: 0 !important;
+}
+.border-dashed {
+    border-style: dashed !important;
+}
+.pointer {
+    cursor: pointer;
+}
+.text-left {
+    text-align: left;
+}
+.selected_kpis {
+    border-color: #556ee6 !important;
+    background: #f1f4ff;
+}
+.accordion_form .accordion-header .accordion-button .fas {
+    width: 30px;
+}
+.accordion_form .accordion-item {
+    margin-bottom: 15px;
+}
+.accordion_form .accordion-item .accordion-collapse {
+    border-width: 1px 1px;
+}
+.form-label em {
+    color: red;
+}
+
+.upload-btn-wrapper {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+}
+
+.upload-btn-wrapper .custom-file-input {
+    font-size: 100px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+}
+
+.internal_loader {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.8);
+    display: none;
+}
+
+.internal_loader span {
+    border: 8px solid #eeeeee; /* Light grey */
+    border-top: 8px solid #485ec4; /* Blue */
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 2s linear infinite;
+    position: absolute;
+    right: 0;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+#TBL_CPAConverDataMap tr:first-child td a.removerow,
+#TBL_ROASConverDataMap tr:first-child td a.removerow {
+    pointer-events: none;
+    cursor: default;
+    opacity: 0.5;
+}
+
+/* ====== UI Chnages as per Guidelines ====== */
+body {
+    color: #171725;
+}
+body[data-topbar="dark"] header#page-topbar {
+    background-color: #576f9a;
+}
+body[data-topbar="dark"] .logo-dark {
+    display: block;
+}
+body[data-layout-size="boxed"] #layout-wrapper {
+    background-color: #f1f4fa ;
+    box-shadow: none !important;
+}
+body {
+    background-color: #f1f4fa !important;
+}
+.navbar-brand-box {
+    padding: 0;
+}
+.navbar-brand-box img {
+    color: #fff;
+    font-size: 22px;
+}
+.navbar-brand-box .logo-lg img {
+    height: 38px;
+}
+
+/* Overwrite Colors */
+a,
+.nav-tabs-custom .nav-item .nav-link.active,
+.btn-outline-primary {
+    color: #0062ff;
+}
+.text-primary {
+    color: #0062ff !important;
+}
+.btn-outline-primary,
+.border-primary {
+    border-color: #0062ff !important;
+}
+.avatar-title,
+.nav-pills .nav-link.active,
+.nav-pills .show > .nav-link,
+.nav-tabs-custom .nav-item .nav-link::after {
+    background-color: #0062ff;
+}
+.tableTab.nav-justified .nav-item .active {
+    background-color: #043186;
+}
+.btn-primary,
+.form-check-input:checked,
+.btn-outline-primary:hover,
+.btn-primary,
+.form-check-input:checked,
+.btn-outline-primary:hover {
+    background-color: #0062ff;
+    border-color: #0062ff;
+}
+.btn-primary:hover {
+    background-color: #043186;
+    border-color: #043186;
+}
+.btn-success {
+    background-color: #3dd598;
+    border-color: #3dd598;
+}
+.btn-success:hover {
+    background-color: #26bf82;
+    border-color: #26bf82;
+}
+
+.text-warning {
+    color: #f0a621 !important;
+}
+
+.btn-outline-warning {
+    color: #f0a621;
+    border-color: #f0a621;
+}
+.btn-outline-warning:hover {
+    background-color: #f0a621;
+}
+.text-danger {
+    color: #f8531d !important;
+}
+.bg-danger {
+    background-color: #f8531d !important;
+}
+
+.text-orange {
+    color: #f87821 !important;
+}
+
+/* Other Elements */
+.accordion .accordion-header .accordion-button {
+    color: #fff;
+    background-color: #353b4a;
+}
+.accordion .accordion-header .accordion-button:after {
+    background-image: transparent;
+    content: "\F0140";
+    font-family: "Material Design Icons";
+    display: block;
+    font-size: 20px;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+}
+
+.topnav:after {
+    content: "";
+    background: rgb(9, 9, 121);
+    background: linear-gradient(
+        90deg,
+        rgba(9, 9, 121, 1) 0%,
+        rgba(9, 9, 121, 1) 27%,
+        rgba(2, 77, 179, 1) 27%,
+        rgba(2, 77, 179, 1) 43%,
+        rgba(2, 149, 245, 1) 43%,
+        rgba(2, 149, 245, 1) 53%,
+    );
+    position: absolute;
+    bottom: -2px;
+    height: 4px;
+    left: 0;
+    right: 0;
+}
+.nav-pills{
+    gap: 15px;
+}
+.nav-pills .nav-link{
+    background: #F6F6F6;
+    color: #878787;
+}
+
+
+            .apexcharts-canvas {
+                position: relative;
+                user-select: none;
+                /* cannot give overflow: hidden as it will crop tooltips which overflow outside chart area */
+            }
+
+            /* scrollbar is not visible by default for legend, hence forcing the visibility */
+            .apexcharts-canvas ::-webkit-scrollbar {
+                -webkit-appearance: none;
+                width: 6px;
+            }
+
+            .apexcharts-canvas ::-webkit-scrollbar-thumb {
+                border-radius: 4px;
+                background-color: rgba(0, 0, 0, 0.5);
+                box-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
+                -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
+            }
+
+            .apexcharts-inner {
+                position: relative;
+            }
+
+            .apexcharts-text tspan {
+                font-family: inherit;
+            }
+
+            .legend-mouseover-inactive {
+                transition: 0.15s ease all;
+                opacity: 0.2;
+            }
+
+            .apexcharts-series-collapsed {
+                opacity: 0;
+            }
+
+            .apexcharts-tooltip {
+                border-radius: 5px;
+                box-shadow: 2px 2px 6px -4px #999;
+                cursor: default;
+                font-size: 14px;
+                left: 62px;
+                opacity: 0;
+                pointer-events: none;
+                position: absolute;
+                top: 20px;
+                display: flex;
+                flex-direction: column;
+                overflow: hidden;
+                white-space: nowrap;
+                z-index: 12;
+                transition: 0.15s ease all;
+            }
+
+            .apexcharts-tooltip.apexcharts-active {
+                opacity: 1;
+                transition: 0.15s ease all;
+            }
+
+            .apexcharts-tooltip.apexcharts-theme-light {
+                border: 1px solid #e3e3e3;
+                background: rgba(255, 255, 255, 0.96);
+            }
+
+            .apexcharts-tooltip.apexcharts-theme-dark {
+                color: #fff;
+                background: rgba(30, 30, 30, 0.8);
+            }
+
+            .apexcharts-tooltip * {
+                font-family: inherit;
+            }
+
+            .apexcharts-tooltip-title {
+                padding: 6px;
+                font-size: 15px;
+                margin-bottom: 4px;
+            }
+
+            .apexcharts-tooltip.apexcharts-theme-light .apexcharts-tooltip-title {
+                background: #eceff1;
+                border-bottom: 1px solid #ddd;
+            }
+
+            .apexcharts-tooltip.apexcharts-theme-dark .apexcharts-tooltip-title {
+                background: rgba(0, 0, 0, 0.7);
+                border-bottom: 1px solid #333;
+            }
+
+            .apexcharts-tooltip-text-value,
+            .apexcharts-tooltip-text-z-value {
+                display: inline-block;
+                font-weight: 600;
+                margin-left: 5px;
+            }
+
+            .apexcharts-tooltip-text-z-label:empty,
+            .apexcharts-tooltip-text-z-value:empty {
+                display: none;
+            }
+
+            .apexcharts-tooltip-text-value,
+            .apexcharts-tooltip-text-z-value {
+                font-weight: 600;
+            }
+
+            .apexcharts-tooltip-marker {
+                width: 12px;
+                height: 12px;
+                position: relative;
+                top: 0px;
+                margin-right: 10px;
+                border-radius: 50%;
+            }
+
+            .apexcharts-tooltip-series-group {
+                padding: 0 10px;
+                display: none;
+                text-align: left;
+                justify-content: left;
+                align-items: center;
+            }
+
+            .apexcharts-tooltip-series-group.apexcharts-active .apexcharts-tooltip-marker {
+                opacity: 1;
+            }
+
+            .apexcharts-tooltip-series-group.apexcharts-active,
+            .apexcharts-tooltip-series-group:last-child {
+                padding-bottom: 4px;
+            }
+
+            .apexcharts-tooltip-series-group-hidden {
+                opacity: 0;
+                height: 0;
+                line-height: 0;
+                padding: 0 !important;
+            }
+
+            .apexcharts-tooltip-y-group {
+                padding: 6px 0 5px;
+            }
+
+            .apexcharts-tooltip-candlestick {
+                padding: 4px 8px;
+            }
+
+            .apexcharts-tooltip-candlestick > div {
+                margin: 4px 0;
+            }
+
+            .apexcharts-tooltip-candlestick span.value {
+                font-weight: bold;
+            }
+
+            .apexcharts-tooltip-rangebar {
+                padding: 5px 8px;
+            }
+
+            .apexcharts-tooltip-rangebar .category {
+                font-weight: 600;
+                color: #777;
+            }
+
+            .apexcharts-tooltip-rangebar .series-name {
+                font-weight: bold;
+                display: block;
+                margin-bottom: 5px;
+            }
+
+            .apexcharts-xaxistooltip {
+                opacity: 0;
+                padding: 9px 10px;
+                pointer-events: none;
+                color: #373d3f;
+                font-size: 13px;
+                text-align: center;
+                border-radius: 2px;
+                position: absolute;
+                z-index: 10;
+                background: #eceff1;
+                border: 1px solid #90a4ae;
+                transition: 0.15s ease all;
+            }
+
+            .apexcharts-xaxistooltip.apexcharts-theme-dark {
+                background: rgba(0, 0, 0, 0.7);
+                border: 1px solid rgba(0, 0, 0, 0.5);
+                color: #fff;
+            }
+
+            .apexcharts-xaxistooltip:after,
+            .apexcharts-xaxistooltip:before {
+                left: 50%;
+                border: solid transparent;
+                content: " ";
+                height: 0;
+                width: 0;
+                position: absolute;
+                pointer-events: none;
+            }
+
+            .apexcharts-xaxistooltip:after {
+                border-color: rgba(236, 239, 241, 0);
+                border-width: 6px;
+                margin-left: -6px;
+            }
+
+            .apexcharts-xaxistooltip:before {
+                border-color: rgba(144, 164, 174, 0);
+                border-width: 7px;
+                margin-left: -7px;
+            }
+
+            .apexcharts-xaxistooltip-bottom:after,
+            .apexcharts-xaxistooltip-bottom:before {
+                bottom: 100%;
+            }
+
+            .apexcharts-xaxistooltip-top:after,
+            .apexcharts-xaxistooltip-top:before {
+                top: 100%;
+            }
+
+            .apexcharts-xaxistooltip-bottom:after {
+                border-bottom-color: #eceff1;
+            }
+
+            .apexcharts-xaxistooltip-bottom:before {
+                border-bottom-color: #90a4ae;
+            }
+
+            .apexcharts-xaxistooltip-bottom.apexcharts-theme-dark:after {
+                border-bottom-color: rgba(0, 0, 0, 0.5);
+            }
+
+            .apexcharts-xaxistooltip-bottom.apexcharts-theme-dark:before {
+                border-bottom-color: rgba(0, 0, 0, 0.5);
+            }
+
+            .apexcharts-xaxistooltip-top:after {
+                border-top-color: #eceff1;
+            }
+
+            .apexcharts-xaxistooltip-top:before {
+                border-top-color: #90a4ae;
+            }
+
+            .apexcharts-xaxistooltip-top.apexcharts-theme-dark:after {
+                border-top-color: rgba(0, 0, 0, 0.5);
+            }
+
+            .apexcharts-xaxistooltip-top.apexcharts-theme-dark:before {
+                border-top-color: rgba(0, 0, 0, 0.5);
+            }
+
+            .apexcharts-xaxistooltip.apexcharts-active {
+                opacity: 1;
+                transition: 0.15s ease all;
+            }
+
+            .apexcharts-yaxistooltip {
+                opacity: 0;
+                padding: 4px 10px;
+                pointer-events: none;
+                color: #373d3f;
+                font-size: 13px;
+                text-align: center;
+                border-radius: 2px;
+                position: absolute;
+                z-index: 10;
+                background: #eceff1;
+                border: 1px solid #90a4ae;
+            }
+
+            .apexcharts-yaxistooltip.apexcharts-theme-dark {
+                background: rgba(0, 0, 0, 0.7);
+                border: 1px solid rgba(0, 0, 0, 0.5);
+                color: #fff;
+            }
+
+            .apexcharts-yaxistooltip:after,
+            .apexcharts-yaxistooltip:before {
+                top: 50%;
+                border: solid transparent;
+                content: " ";
+                height: 0;
+                width: 0;
+                position: absolute;
+                pointer-events: none;
+            }
+
+            .apexcharts-yaxistooltip:after {
+                border-color: rgba(236, 239, 241, 0);
+                border-width: 6px;
+                margin-top: -6px;
+            }
+
+            .apexcharts-yaxistooltip:before {
+                border-color: rgba(144, 164, 174, 0);
+                border-width: 7px;
+                margin-top: -7px;
+            }
+
+            .apexcharts-yaxistooltip-left:after,
+            .apexcharts-yaxistooltip-left:before {
+                left: 100%;
+            }
+
+            .apexcharts-yaxistooltip-right:after,
+            .apexcharts-yaxistooltip-right:before {
+                right: 100%;
+            }
+
+            .apexcharts-yaxistooltip-left:after {
+                border-left-color: #eceff1;
+            }
+
+            .apexcharts-yaxistooltip-left:before {
+                border-left-color: #90a4ae;
+            }
+
+            .apexcharts-yaxistooltip-left.apexcharts-theme-dark:after {
+                border-left-color: rgba(0, 0, 0, 0.5);
+            }
+
+            .apexcharts-yaxistooltip-left.apexcharts-theme-dark:before {
+                border-left-color: rgba(0, 0, 0, 0.5);
+            }
+
+            .apexcharts-yaxistooltip-right:after {
+                border-right-color: #eceff1;
+            }
+
+            .apexcharts-yaxistooltip-right:before {
+                border-right-color: #90a4ae;
+            }
+
+            .apexcharts-yaxistooltip-right.apexcharts-theme-dark:after {
+                border-right-color: rgba(0, 0, 0, 0.5);
+            }
+
+            .apexcharts-yaxistooltip-right.apexcharts-theme-dark:before {
+                border-right-color: rgba(0, 0, 0, 0.5);
+            }
+
+            .apexcharts-yaxistooltip.apexcharts-active {
+                opacity: 1;
+            }
+
+            .apexcharts-yaxistooltip-hidden {
+                display: none;
+            }
+
+            .apexcharts-xcrosshairs,
+            .apexcharts-ycrosshairs {
+                pointer-events: none;
+                opacity: 0;
+                transition: 0.15s ease all;
+            }
+
+            .apexcharts-xcrosshairs.apexcharts-active,
+            .apexcharts-ycrosshairs.apexcharts-active {
+                opacity: 1;
+                transition: 0.15s ease all;
+            }
+
+            .apexcharts-ycrosshairs-hidden {
+                opacity: 0;
+            }
+
+            .apexcharts-selection-rect {
+                cursor: move;
+            }
+
+            .svg_select_boundingRect,
+            .svg_select_points_rot {
+                pointer-events: none;
+                opacity: 0;
+                visibility: hidden;
+            }
+            .apexcharts-selection-rect + g .svg_select_boundingRect,
+            .apexcharts-selection-rect + g .svg_select_points_rot {
+                opacity: 0;
+                visibility: hidden;
+            }
+
+            .apexcharts-selection-rect + g .svg_select_points_l,
+            .apexcharts-selection-rect + g .svg_select_points_r {
+                cursor: ew-resize;
+                opacity: 1;
+                visibility: visible;
+            }
+
+            .svg_select_points {
+                fill: #efefef;
+                stroke: #333;
+                rx: 2;
+            }
+
+            .apexcharts-svg.apexcharts-zoomable.hovering-zoom {
+                cursor: crosshair;
+            }
+
+            .apexcharts-svg.apexcharts-zoomable.hovering-pan {
+                cursor: move;
+            }
+
+            .apexcharts-zoom-icon,
+            .apexcharts-zoomin-icon,
+            .apexcharts-zoomout-icon,
+            .apexcharts-reset-icon,
+            .apexcharts-pan-icon,
+            .apexcharts-selection-icon,
+            .apexcharts-menu-icon,
+            .apexcharts-toolbar-custom-icon {
+                cursor: pointer;
+                width: 20px;
+                height: 20px;
+                line-height: 24px;
+                color: #6e8192;
+                text-align: center;
+            }
+
+            .apexcharts-zoom-icon svg,
+            .apexcharts-zoomin-icon svg,
+            .apexcharts-zoomout-icon svg,
+            .apexcharts-reset-icon svg,
+            .apexcharts-menu-icon svg {
+                fill: #6e8192;
+            }
+
+            .apexcharts-selection-icon svg {
+                fill: #444;
+                transform: scale(0.76);
+            }
+
+            .apexcharts-theme-dark .apexcharts-zoom-icon svg,
+            .apexcharts-theme-dark .apexcharts-zoomin-icon svg,
+            .apexcharts-theme-dark .apexcharts-zoomout-icon svg,
+            .apexcharts-theme-dark .apexcharts-reset-icon svg,
+            .apexcharts-theme-dark .apexcharts-pan-icon svg,
+            .apexcharts-theme-dark .apexcharts-selection-icon svg,
+            .apexcharts-theme-dark .apexcharts-menu-icon svg,
+            .apexcharts-theme-dark .apexcharts-toolbar-custom-icon svg {
+                fill: #f3f4f5;
+            }
+
+            .apexcharts-canvas .apexcharts-zoom-icon.apexcharts-selected svg,
+            .apexcharts-canvas .apexcharts-selection-icon.apexcharts-selected svg,
+            .apexcharts-canvas .apexcharts-reset-zoom-icon.apexcharts-selected svg {
+                fill: #008ffb;
+            }
+
+            .apexcharts-theme-light .apexcharts-selection-icon:not(.apexcharts-selected):hover svg,
+            .apexcharts-theme-light .apexcharts-zoom-icon:not(.apexcharts-selected):hover svg,
+            .apexcharts-theme-light .apexcharts-zoomin-icon:hover svg,
+            .apexcharts-theme-light .apexcharts-zoomout-icon:hover svg,
+            .apexcharts-theme-light .apexcharts-reset-icon:hover svg,
+            .apexcharts-theme-light .apexcharts-menu-icon:hover svg {
+                fill: #333;
+            }
+
+            .apexcharts-selection-icon,
+            .apexcharts-menu-icon {
+                position: relative;
+            }
+
+            .apexcharts-reset-icon {
+                margin-left: 5px;
+            }
+
+            .apexcharts-zoom-icon,
+            .apexcharts-reset-icon,
+            .apexcharts-menu-icon {
+                transform: scale(0.85);
+            }
+
+            .apexcharts-zoomin-icon,
+            .apexcharts-zoomout-icon {
+                transform: scale(0.7);
+            }
+
+            .apexcharts-zoomout-icon {
+                margin-right: 3px;
+            }
+
+            .apexcharts-pan-icon {
+                transform: scale(0.62);
+                position: relative;
+                left: 1px;
+                top: 0px;
+            }
+
+            .apexcharts-pan-icon svg {
+                fill: #fff;
+                stroke: #6e8192;
+                stroke-width: 2;
+            }
+
+            .apexcharts-pan-icon.apexcharts-selected svg {
+                stroke: #008ffb;
+            }
+
+            .apexcharts-pan-icon:not(.apexcharts-selected):hover svg {
+                stroke: #333;
+            }
+
+            .apexcharts-toolbar {
+                position: absolute;
+                z-index: 11;
+                max-width: 176px;
+                text-align: right;
+                border-radius: 3px;
+                padding: 0px 6px 2px 6px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .apexcharts-menu {
+                background: #fff;
+                position: absolute;
+                top: 100%;
+                border: 1px solid #ddd;
+                border-radius: 3px;
+                padding: 3px;
+                right: 10px;
+                opacity: 0;
+                min-width: 110px;
+                transition: 0.15s ease all;
+                pointer-events: none;
+            }
+
+            .apexcharts-menu.apexcharts-menu-open {
+                opacity: 1;
+                pointer-events: all;
+                transition: 0.15s ease all;
+            }
+
+            .apexcharts-menu-item {
+                padding: 6px 7px;
+                font-size: 12px;
+                cursor: pointer;
+            }
+
+            .apexcharts-theme-light .apexcharts-menu-item:hover {
+                background: #eee;
+            }
+
+            .apexcharts-theme-dark .apexcharts-menu {
+                background: rgba(0, 0, 0, 0.7);
+                color: #fff;
+            }
+
+            @media screen and (min-width: 768px) {
+                .apexcharts-canvas:hover .apexcharts-toolbar {
+                    opacity: 1;
+                }
+            }
+
+            .apexcharts-datalabel.apexcharts-element-hidden {
+                opacity: 0;
+            }
+
+            .apexcharts-pie-label,
+            .apexcharts-datalabels,
+            .apexcharts-datalabel,
+            .apexcharts-datalabel-label,
+            .apexcharts-datalabel-value {
+                cursor: default;
+                pointer-events: none;
+            }
+
+            .apexcharts-pie-label-delay {
+                opacity: 0;
+                animation-name: opaque;
+                animation-duration: 0.3s;
+                animation-fill-mode: forwards;
+                animation-timing-function: ease;
+            }
+
+            .apexcharts-canvas .apexcharts-element-hidden {
+                opacity: 0;
+            }
+
+            .apexcharts-hide .apexcharts-series-points {
+                opacity: 0;
+            }
+
+            .apexcharts-gridline,
+            .apexcharts-annotation-rect,
+            .apexcharts-tooltip .apexcharts-marker,
+            .apexcharts-area-series .apexcharts-area,
+            .apexcharts-line,
+            .apexcharts-zoom-rect,
+            .apexcharts-toolbar svg,
+            .apexcharts-area-series .apexcharts-series-markers .apexcharts-marker.no-pointer-events,
+            .apexcharts-line-series .apexcharts-series-markers .apexcharts-marker.no-pointer-events,
+            .apexcharts-radar-series path,
+            .apexcharts-radar-series polygon {
+                pointer-events: none;
+            }
+
+            /* markers */
+
+            .apexcharts-marker {
+                transition: 0.15s ease all;
+            }
+
+            @keyframes opaque {
+                0% {
+                    opacity: 0;
+                }
+                100% {
+                    opacity: 1;
+                }
+            }
+
+            /* Resize generated styles */
+
+            @keyframes resizeanim {
+                from {
+                    opacity: 0;
+                }
+                to {
+                    opacity: 0;
+                }
+            }
+
+            .resize-triggers {
+                animation: 1ms resizeanim;
+                visibility: hidden;
+                opacity: 0;
+            }
+
+            .resize-triggers,
+            .resize-triggers > div,
+            .contract-trigger:before {
+                content: " ";
+                display: block;
+                position: absolute;
+                top: 0;
+                left: 0;
+                height: 100%;
+                width: 100%;
+                overflow: hidden;
+            }
+
+            .resize-triggers > div {
+                background: #eee;
+                overflow: auto;
+            }
+
+            .contract-trigger:before {
+                width: 200%;
+                height: 200%;
+            }
+
+
+            .jqstooltip {
+                position: absolute;
+                left: 0px;
+                top: 0px;
+                visibility: hidden;
+                background: rgb(0, 0, 0) transparent;
+                background-color: rgba(0, 0, 0, 0.6);
+                filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000);
+                -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)";
+                color: white;
+                font: 10px arial, san serif;
+                text-align: left;
+                white-space: nowrap;
+                padding: 5px;
+                border: 1px solid white;
+                box-sizing: content-box;
+                z-index: 10000;
+            }
+            .jqsfield {
+                color: white;
+                font: 10px arial, san serif;
+                text-align: left;
+            }
+
+
+        	.debank_container
+{
+  background: #fafbfc;
+}
+
+.debank_header
+{
+
+  padding: 35px 0px;
+  padding-top: 65px;
+}
+.row.debank_tabs{
+	padding-top: 100px;
+}
+
+.debank_header_left h1
+{
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 0;
+  color: #19233c;
+}
+
+.debank_header_left p
+{
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 29px;
+  margin-bottom: 0;
+  color: #19233c;
+  word-break: break-word;
+}
+
+.debank_header_right h3
+{
+    color: #19233c;
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 32px;
+    font-weight: 900;
+    line-height: 39px;
+    margin-bottom: 0;
+}
+
+.debank_tabs .nav-tabs
+{
+  border: none;
+}
+
+.debank_tabs .nav-link
+{
+    color: #8b93a7;
+    font-weight: 400;
+    background-color: transparent !important;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 10px 8px;
+    border-bottom: 4px solid transparent;
+    margin-right: 20px
+}
+
+
+.debank_tabs .nav-link.active
+{
+  color: #51585f;
+  border-color:#51585f;
+  font-weight: 600;
+}
+
+.debank_tab_content
+{
+  background: #eff3f8;
+  /*padding: 70px 0px;*/
+}
+
+.debank_tab_area
+{
+  width: 100%;
+  padding: 34px 50px;
+  background: #ffffff;
+  box-shadow: 0 0 15px 0 rgba(0,0,0,.03);
+  border-radius: 6px;
+  padding-bottom: 60px;
+}
+
+.debank_tab_area ul
+{
+  list-style: none;
+  display: flex;
+  background-color: #ffffff;
+  flex-wrap: wrap;
+  padding: 0;
+  margin-bottom: 0;
+}
+
+.debank_tab_area ul li
+{
+  display: inline-flex;
+  margin-bottom: 16px;
+}
+
+.debank_tab_area ul li img
+{
+    width: 32px;
+    margin-right: 8px;
+    flex: none;
+    height: 32px;
+}
+
+.debank_tab_area ul li>div
+{
+    display: inline-flex;
+    flex-direction: column;
+    font-size: 12px;
+    color: #616b84;
+    width: 143px;
+    text-align: left;
+    line-height: 15px;
+}
+
+.debank_tab_area ul li>div>div:first-child
+{
+    margin-bottom: 4px;
+    color: rgba(206,209,216);
+}
+
+.debank_tab_area ul li span
+{
+  font-weight: 700;
+  margin-right: 8px;
+  font-size: 15px;
+  color: #19233c;
+  color: #323642;
+
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 32px;
+  font-weight: normal;
+  line-height: 39px;
+  margin-bottom: 0;
+}
+
+.debank_tabs_right span.date_text
+{
+    height: 21px;
+    margin-left: 4px;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    flex: none;
+    font-size: 12px;
+    color: #8b93a7;
+    line-height: 15px;
+    justify-content: end;
+}
+
+.debank_tabs_right span.date_time
+{
+    color: #19233c;
+    margin: 0 3px;
+}
+
+.debank_tabs_right button.ref_btn
+{
+    width: 74px;
+    height: 21px;
+    font-size: 12px;
+    margin-left: 12px;
+    color: #8b93a7;
+    border: 1px solid #e1e5f2;
+    background: #fff;
+    border-radius: 9999px;
+    overflow: hidden;
+    position: relative;
+    transition: all .3s ease-in-out;
+}
+
+.portfolio_cells
+{
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  grid-gap: 16px;
+
+}
+
+.portfolio_cells .portfolio_cell
+{
+  content-visibility: auto;
+  contain-intrinsic-size: auto 52px;
+}
+
+.cell_itemname {
+  margin-left: 15px;
+}
+
+.portfolio_cells .portfolio_cell .cell_item
+{
+    display: flex;
+    position: relative;
+    font-size: 12px;
+    font-weight: 700;
+    color: #616b84;
+    line-height: 15px;
+    padding: 25px 10px;
+    box-sizing: border-box;
+    background: #eff3f8;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.portfolio_cells .portfolio_cell .cell_item .cell_img
+{
+  flex: none;
+  align-self: center;
+  width: 28px;
+}
+
+.portfolio_cells .portfolio_cell .cell_item .cell_img,.portfolio_cells .portfolio_cell .cell_item .cell_img>div
+{
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.portfolio_cells .portfolio_cell .cell_item .cell_itemname_title
+{
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    word-break: break-all;
+    font-weight: normal;
+    margin-bottom: 10px
+}
+
+.portfolio_cells .portfolio_cell .cell_item .cell_itemname_price
+{
+  color: #19233c;
+  height: 17px;
+  font-size:15px;
+  font-weight: normal;
+}
+
+.portfolio_month
+{
+  color: rgba(196,196,196);
+  font-size: 14px;
+  margin-bottom: 8px;
+  font-weight: 400;
+}
+
+.cell_itemnum
+{
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    background: rgba(243,245,248);
+    padding: 4px 15px;
+    border: 1px solid rgba(232,234,236);
+    text-align: center;
+    color: rgba(160,162,163);
+    border-radius: 5px;
+    font-weight: normal;
+}
+.portfolio_cell img{
+	width: 100%
+}
+
+@media (max-width: 1199px) {
+
+  .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.55%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+  }
+  .navbar-toggler
+  {
+    background: #000;
+  }
+  .navbar-collapse {
+    left: 0;
+    -webkit-transform: translate3d(-290px, 0, 0);
+    transform: translate3d(-290px, 0, 0);
+    overflow: hidden;
+    overflow-y: auto;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    background-color: #222;
+    color: #fff;
+    width: 290px;
+    padding: 25px;
+    z-index: 999;
+    opacity: 1;
+    transition: transform 0.3s ease;
+    -moz-transition: transform 0.3s ease;
+    -webkit-transition: transform 0.3s ease;
+    -o-transition: transform 0.3s ease;
+    height: 100%;
+  }
+  .navbar-collapse.show
+  {
+      left: 0;
+      transform: none;
+      -webkit-transform: none;
+
+  }
+  .navbar-nav .nav-link
+  {
+    color: #FFF;
+    padding: 5px 0
+  }
+  .register_btns .bttn
+  {
+    padding: 15px 30px;
+  }
+
+}
+@media (max-width: 1023px) {
+  .ova-heading
+  {
+    font-size: 32px;
+    line-height: 120%;
+  }
+  .howit_wrapper .sub-heading
+  {
+    font-size: 24px;
+  }
+  .populated
+  {
+    margin-top: 25px;
+  }
+  .feature-card
+  {
+    margin-bottom: 15px; margin-top: 15px;
+  }
+  }
+
+  @media (max-width: 575.98px)
+  {
+    .portfolio_cells {
+    grid-template-columns: repeat(1,1fr) !important;
+  }
+  .debank_tab_area ul li span {
+
+    font-size: 22px;
+	}
+  }
+
+  @media (max-width: 767px)
+  {
+    .debank_header
+    {
+      padding: 40px 0px;
+      padding-top: 15px;
+    }
+
+    .debank_tab_content
+    {
+      padding: 40px 0px;
+    }
+
+
+
+    .navbar-header {
+    padding: 0 calc(90px / 2);
+}
+.navbar-brand-box img {
+    color: #fff;
+    font-size: 22px;
+    width: 50px;
+}
+body[data-layout="horizontal"] .page-content {
+
+    padding: 10px !important;
+}
+.card .d-none {
+    display: block !important;
+}
+.card .d-block {
+    display: none;
+    display: none !important;
+}
+.nav-tabs-custom .nav-item .nav-link {
+    width: 150px !important;
+}
+.portfolio_cells {
+    grid-template-columns: repeat(1,1fr) !important;
+}
+  }
+
+  .rightl{
+	float: right;
+    width: 100%;
+    display: block !important;
+}
+.Panel_container__2mhz_ {
+    padding: 22px 20px 20px;
+}
+.EmbededTable_header__lg7iM {
+    width: 100%;
+    font-size: 12px;
+    font-weight: 700;
+    color:#8b93a7;
+    line-height: 15px;
+    min-width: 800px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+}
+.EmbededTable_header__lg7iM>div {
+    flex: 1 1;
+    min-width: 70px;
+    white-space: nowrap;
+    background:#eff3f8
+}
+.EmbededTable_header__lg7iM>div>span {
+    padding: 7px 10px;
+    display: block;
+}
+.EmbededTable_header__lg7iM>div:first-child>span {
+    padding: 7px 0 7px 10px;
+}
+.card_card__i5VM9 {
+    background:#fff;
+    box-shadow: 0 0 15px 0 rgba(0,0,0,.03);
+    border-radius: 6px;
+}
+
+.EmbededTable_content__MhiXO {
+    width: 100%;
+    font-size: 14px;
+    color: #19233c;
+    line-height: 17px;
+}
+.EmbededTable_content__MhiXO>div {
+    border-bottom: #eff3f8;
+}
+.EmbededTable_contentRow__3NvJL {
+    width: 100%;
+    line-height: 15px;
+    min-width: 800px;
+        display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.EmbededTable_contentRow__3NvJL>div {
+    flex: 1 1;
+    overflow: hidden;
+    min-width: 70px;
+}
+
+.EmbededTable_contentRow__3NvJL>div>span {
+    padding: 15px 10px;
+    display: block;
+    overflow-wrap: break-word;
+    overflow: hidden;
+}
+.EmbededTable_contentRow__3NvJL>div:first-child>span {
+    padding: 15px 0 15px 10px;
+}
+.Flex_flex__2sTHk.Flex_flexRow__1XYls {
+    flex-direction: row;
+}
+
+.LabelWithIcon_container__8IVcl {
+    justify-content: start;
+    display: flex;
+
+    align-items: center;
+}
+.EmbededTable_contentRow__3NvJL>div:last-child>span, .EmbededTable_header__lg7iM>div:last-child>span {
+    text-align: right;
+}
+div#myTabContent {
+    margin-top: 40px;
+}
+@media (max-width: 767px) {
+	.rightl {
+    float: right;
+    width: auto;
+    display: flex !important;
+}
+.EmbededTable_header__lg7iM{
+	min-width: auto;
+}
+.EmbededTable_contentRow__3NvJL{
+	min-width: auto;
+}
+.topnav.active{
+	display: none
+}
+}
+.t-hours-ago{
+	font-size: 10px
+}
+.simplebar-content-wrapper{
+	    overflow: hidden !important;
+}
+.card {
+ border-radius:6px !important;
+}
+input[type=checkbox] {
+    border-radius: 0px !important;
+    width: 1.5em !important;
+    height: 1.5em !important;
+}
+@media (max-width: 993px){
+.navbar-brand-box img {
+    color: #fff;
+    font-size: 22px;
+    width: 50px;
+}
+}
+.portfolio_cell  thead tr th:nth-child(1)  {
+    border-bottom-left-radius: 6px;
+    border-top-left-radius: 6px;
+    width: 20px;
+}
+.portfolio_cell  thead tr th:nth-child(8){
+	border-bottom-right-radius: 6px;
+    border-top-right-radius: 6px;
+    width: 20px;
+}
+@media (min-width: 481px){
+.navbar-expand-lg {
+	-ms-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+    -webkit-box-pack: start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+}
+.navbar-expand-lg .navbar-nav {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+}
+}
+
+@media (min-width: 767px){
+	.debank_tab_area {
+
+    padding: 0px;
+	}
+}

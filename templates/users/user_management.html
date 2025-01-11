@@ -1,0 +1,91 @@
+{% extends "layouts/top.html" %}
+{% load static %}
+{% block header %}
+<title>User Management</title>
+{% endblock %}
+{% block style %}
+<script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+<link href="{% static 'assets/css/apps/mailbox.css' %}" rel="stylesheet" type="text/css"/>
+<style>
+.table-head {
+    background-color: #dce0f7 !important;
+}
+
+.table-td {
+    padding-top: 20px !important;
+    background-color: #f2f2f2 !important;
+}
+
+.client-table {
+    border: 0.5px solid #d1cfcf;
+    border-radius: 2px;
+    margin-top: 21px;
+    background-color: #f2f2f2;
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px, rgba(17, 17, 26, 0.1) 0px 24px 80px;
+}
+
+tr:hover td {
+    background-color: #e8e6e6 !important;
+}
+
+.dropdown-item {
+    padding: 0.5rem 1rem;
+}
+
+.meta-info p {
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.dropdown-menu.show {
+    display: block !important;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="main-content">
+    <div class="page-content">
+        <div class="row">
+            <div class="col-md-11 mt-3 mb-0 p-1 pl-3">
+                <ol class="breadcrumb m-0">
+                    <li class="breadcrumb-item font-size-14"><a href="#">Home</a></li>
+                </ol>
+            </div>
+            <div class="col-md-1 mb-3 mt-2 p-2">
+             <button class="btn btn-primary btn-sm">Add User</button>
+            </div>
+        </div>
+        <div class="client-table">
+        <table class="table">
+                <thead>
+                    <tr>
+                        <th class="table-head">Name</th>
+                        <th class="table-head">Email</th>
+                        <th class="table-head">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in users %}
+                    <tr>
+                        <td class="table-td">{{user.first_name}} {{user.last_name}}</td>
+                        <td class="table-td">{{user.email}}</td>
+                        <td class="table-td">
+                            <i class="fas fa-edit"></i>
+                            <i class="fas fa-trash-alt"></i>
+                            <i class="fa fa-key" aria-hidden="true"></i>                                                        
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            </div>
+
+      <div class="rightbar-overlay"></div>
+  </div>
+</div>
+{% endblock %}
+{% block script %}
+<script>
+</script>
+{% endblock %}

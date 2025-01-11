@@ -1,0 +1,44 @@
+{% extends "layouts/base_full.html" %}
+{% block header %}
+<title>CPA Login</title>
+{% endblock %}
+{% load static %}
+
+{% block content %}
+
+<section class="cklsign">
+    <div class="pklsi">
+        <div class="iopsi">
+            <header class="uiopj">
+                <div title="HashiCorp" id="custom-prompt-logo"></div>
+                <a href="javascript:void(0)">
+                    <img alt="..." src="{% static 'assets/img/cpm.png' %}" class="interblockchainlogo" style="width: 60%;" />
+                </a>
+                <h1 class="c3fa29956 c926e5028">Enter Your Details</h1>
+            </header>
+            <div class="c439d90a0 c37cd0ac8">
+                <form method="POST" action="{% url 'login' %}" class="signupForm hidden-logged-in signupForm-homepage-center">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <input type="text" name="{{ form.username.name }}" 
+                        class="textinput textInput form-control" placeholder="Username"/>
+                        {% if form.errors %}
+                        <p class="text-danger" style="text-align: left;">Please Check Username</p>
+                        {% endif %}
+                    </div>
+
+                    <div class="form-group">
+                        <input type="password" name="{{ form.password.name }}" class="textinput textInput form-control" 
+                         placeholder="Password"/>
+                         {% if form.errors %}
+                         <p class="text-danger" style="text-align: left;">Please Check Password</p>
+                         {% endif %}
+                    </div>
+                    <button type="submit" class="btn btn-lg btn-flat btn-block btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+{% endblock %}

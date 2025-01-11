@@ -1,0 +1,123 @@
+{% extends 'layouts/top.html' %}
+{% load custom_filters %}
+{% block header %}
+<title>Questionnaire</title>
+{% endblock %}
+{% block style %}
+<style>
+    .sections {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            margin-bottom: 20px;
+        }
+
+        /* Collapsible section button */
+        .collapsible {
+            background-color: #b7c7e4;
+            color: black;
+            cursor: pointer;
+            padding: 15px;
+            border: none;
+            text-align: left;
+            font-size: 16px;
+            width: 100%;
+            border-radius: 5px;
+            outline: none;
+            margin-bottom: 10px;
+        }
+
+        .collapsible.active {
+            background-color: #92afe3;
+        }
+
+        /* Sub-content style */
+        .sub-content {
+            display: none;
+            padding: 20px;
+            background-color: #f8f9fa;
+            margin-top: 10px;
+            border-left: 5px solid #92afe3;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .sub-content.show {
+            background-color: #ffffff;
+            padding: 25px;
+            border-radius: 8px;
+            border-left: 5px solid #0056b3;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            margin-bottom: 15px;
+        }
+
+        .sub-content ul {
+            margin-left: 35px;
+            padding-left: 0;
+        }
+
+        .sub-content ul li {
+            padding: 2px 0;
+            color: #333;
+        }
+
+        .sub-section {
+            margin-bottom: 0px;
+        }
+</style>
+{% endblock %}
+{% block content %}
+<div class="main-content">
+    <div class="container-fluid" style="margin-top: 135px;">
+        <h2>Questionnaire</h2>
+        <div class="sections" style="margin-top: 20px;">
+            {% for item in data %}
+                    <button class="collapsible">{{ item.header }}</button>
+                    <div class="sub-content">
+                        <p class="sub-section">{{item.order}} {{item.question}}</p>
+                        <ul>
+                            <li>{{item.yes_no_answer}}</li>
+                            {% if item.text_answer %}
+                                <li>{{item.text_answer}}</li>
+                            {% endif %}
+                        </ul>
+
+                        {% if item.childrens %}
+                        {% for child in item.childrens %}
+                        <p class="sub-section">{{item.order}}{{child.question__order}} {{child.question__question_text}}</p>
+                        <ul>
+                            <li>{{child.yes_no_answer}}</li>
+
+                            {% if child.text_answer %}
+                            <li>{{child.text_answer}}</li>
+                            {% endif %}
+                        </ul>
+                        {% endfor %}
+                        {% endif %}
+
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block script %}
+<script>
+    var coll = document.getElementsByClassName("collapsible");
+    for (var i = 0; i < coll.length; i++) {
+        coll[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            var content = this.nextElementSibling;
+            if (content.style.display === "block") {
+                content.style.display = "none";
+                updated_sign = $(this).text().replace('-', '+');
+            } else {
+                content.style.display = "block";
+                updated_sign = $(this).text().replace('+', '-');
+            }
+            $(this).html(updated_sign)
+        });
+    }
+</script>
+{% endblock %}

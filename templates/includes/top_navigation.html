@@ -1,0 +1,66 @@
+{% load static %}
+{% with url_name=request.resolver_match.url_name %}
+<header id="page-topbar">
+    <div class="navbar-header">
+        <div class="d-flex">
+            <!-- LOGO -->
+            <div class="navbar-brand-box">
+                <a href="#" class="logo logo-dark">
+         <span class="logo-sm">
+         <img src="{% static 'assets/img/cpm.png' %}" alt="p-logo"/>
+         </span>
+                    <span class="logo-lg">
+            <img alt="..." src="{% static 'assets/img/cpm.png' %}" class="interblockchainlogo" style="width: 130%"/>
+         </span>
+                </a>
+            </div>
+            </div>
+            {% if request.user.is_authenticated %}
+        <div class="d-flex">
+            <div class="dropdown d-inline-block">
+                <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown"
+                        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="d-none d-xl-inline-block ms-1" key="t-henry">Account</span>
+                    <em class="mdi mdi-chevron-down d-none d-xl-inline-block"></em>
+                </button>
+                <div class="dropdown-menu dropdown-menu-end">
+                    <a class="dropdown-item d-block" href="#"> <span key="t-settings">Logged in as {{request.user}}</span></a>
+                    <a class="dropdown-item d-block" href="{% url 'admin_users' %}"> <span key="t-settings">User Management</span></a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item d-block" href="{% url 'logout' %}">Log Out</a>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</header>
+<div class="topnav">
+    <nav class="navbar navbar-light navbar-expand-lg topnav-menu">
+        <div class="collapse navbar-collapse" id="topnav-menu-content">
+            <ul class="navbar-nav">
+                <li class="nav-item dropdown">
+                    <a class="nav-link arrow-none
+                        {% if 'home' in url_name %}active{% endif %}" href="{% url 'home' %}" id="topnav-dashboard"
+                       role="button">
+                        <span key="t-dashboards">Home</span>
+                    </a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link arrow-none
+                        {% if 'clients' in url_name %}active{% endif %}" href="{% url 'clients' %}" id="topnav-dashboard"
+                       role="button">
+                        <span key="t-dashboards">Clients</span>
+                    </a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link arrow-none
+                        {% if 'settings' in url_name %}active{% endif %}" href="{% url 'settings' %}" id="topnav-dashboard"
+                       role="button">
+                        <span key="t-dashboards">Settings</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
+{% endwith %}

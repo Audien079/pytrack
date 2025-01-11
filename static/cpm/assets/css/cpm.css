@@ -1,0 +1,17 @@
+.custom_card {
+     padding-top: 15px;
+     width:400px;
+     border-radius: 18px !important;
+}
+
+.custom_card:hover {
+     background-color: 	#DCDCDC;
+}
+
+.card-img-top {
+     display: block;
+     width: 100%;
+     height: auto;
+     margin-left: auto;
+     margin-right: auto;
+}

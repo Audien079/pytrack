@@ -1,0 +1,156 @@
+{% extends 'layouts/top.html' %}
+{% block header %}
+<title>CPA Dashboard</title>
+{% endblock %}
+{% block style %}
+<style>
+.status {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 15px;
+}
+
+.success {
+    background-color: #60c477; /* Green color */
+}
+
+.fail {
+    background-color: #e36470; /* Red color */
+}
+
+.icon {
+    font-size: 10px;
+    color: white;
+}
+</style>
+{% endblock %}
+{% block content %}
+<div id="layoutSidenav_content">
+    <main>
+        <div class="container-fluid px-4">
+            <h1 class="mt-4">Dashboard</h1>
+            <p class="message" style="font: 13px; color: white; padding-left: 40px; height:25px;"></p>
+            <div class="card mb-4">
+                <div class="card-header">
+                    <i class="fas fa-table me-1"></i>
+                    Clients List
+                </div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Client Id</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Action</th>
+                        <th>Is Admin</th>
+                        <th>Send Email</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in users %}
+                    <tr>
+                        <td>{{user.id}}</td>
+                        <td>{{user.first_name}}</td>
+                        <td>{{user.last_name}}</td>
+                        <td>{{user.username}}</td>
+                        <td>{{user.email}}</td>
+                        <td>
+                            <a href="{% url 'user_detail' user.id %}" class="btn btn-primary btn-sm">
+                                <i class="fa fa-address-book"></i>
+                            </a>
+                        </td>
+                        <td>
+                            {% if user.is_admin %}
+                            <div class="status success">
+                                <i class="icon">✔</i>
+                            </div>
+                            {% else %}
+                            <div class="status fail">
+                                <i class="icon">✘</i>
+                            </div>
+                            {% endif %}
+                        </td>
+                        <td>
+                            <button style="width: 125px;" user-id="{{user.id}}" type="submit" class="btn btn-primary mt-1 btn-sm email_qnr">Send Questionnaire</button>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            </div>
+        </div>
+    </main>
+</div>
+<div class="modal fade" id="email_modal_success" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Questionnaire sent to user via email</h5>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary email_modal_confirm">Ok</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="email_modal_failure" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">User already had pending questionnaire</h5>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary email_modal_confirm">Ok</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block script %}
+<script>
+$(document).ready(function(){
+    $(".message").hide();
+
+    $('.email_qnr').click(function(){
+          var btn = $(this);
+          var id = btn.attr("user-id");
+
+          $.ajax(
+              {
+                  type: "POST",
+                  url: "{% url 'email_questionnaire' %}",
+                  data: {
+                      'pk': id,
+                      'csrfmiddlewaretoken': '{{ csrf_token }}',
+                  },
+                  success: function (response) {
+                      if(response['message'] == 'success'){
+                          $(".message").html('Questionnaire sent sucessfully');
+                          $(".message").css("background-color", "#6dde7c");
+                           $(".message").show();
+                           setTimeout(function(){
+                               $(".message").hide();
+                               }, 4000);
+                      }
+                      else{
+                          $(".message").html('User already had pending questionnaire');
+                           $(".message").show();
+                           $(".message").css("background-color", "#d9437a");
+                           setTimeout(function(){
+                               $(".message").hide();
+                               }, 4000);
+                      }
+                  }
+              })
+  });
+});
+</script>
+{% endblock %}

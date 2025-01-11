@@ -1,0 +1,206 @@
+{% extends 'layouts/top.html' %}
+{% load static %}
+{% load custom_filters %}
+{% block header %}
+<title>Settings</title>
+{% endblock %}
+{% block style %}
+<style>
+.settings-container {
+    max-width: 60%;
+    margin: auto;
+    background-color: white;
+    padding: 25px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+.custom-section {
+    margin-bottom: 20px;
+    margin-top: 30px;
+}
+.custom-section h3 {
+    margin-bottom: 10px;
+    font-size: 16px;
+    font-weight: bold;
+}
+.input-group {
+    display: flex;
+    align-items: center; /* Aligns items vertically in the center */
+    gap: 40px; /* Space between label and input (customizable) */
+    margin-bottom: 15px; /* Spacing between form groups */
+}
+.input-group input[type="text"] {
+    width: 80px;
+    padding: 5px;
+    margin-right: 5px;
+}
+.radio-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+.custom-dropdown {
+    width: 150px;
+    padding: 5px;
+}
+
+.parent {
+    width: 100vw;
+    height: 80px;
+    /* Aligns the children items in a row direction */
+    display: flex;
+}
+
+.child1{
+    width: 20%;
+}
+
+.management {
+    background: white;
+    border: 0.3px solid grey;
+}
+
+</style>
+{% endblock %}
+{% block content %}
+<div class="main-content">
+    <div class="container-fluid" style="margin-top: 135px;">
+        <div class="settings-container">
+            <h2>Settings</h2>
+            <div class="custom-section">
+                <h3>Admin options</h3>
+                <a href="{% url 'user_management' %}"><button class="management">User management</button></a>
+            </div>
+
+            <div class="custom-section err-load">
+                <h3>Client Surveys</h3>
+                <div class="input-group">
+                    <label for="first-survey">First Survey date</label>
+                    <input data-value="1" class="survey_date" type="text" {% if setting.first_survey_date %}value="{{setting.first_survey_date}}"{% endif %} id="first-survey" placeholder="DD/MM">
+                </div>
+                <div class="input-group">
+                    <label for="second-survey">Second Survey date</label>
+                    <input data-value="2" class="survey_date" type="text" {% if setting.second_survey_date %}value="{{setting.second_survey_date}}"{% endif %} id="second-survey" placeholder="DD/MM">
+                </div>
+            </div>
+
+            <div class="custom-section parent">
+                <div class="child1">
+                    <h3>Follow up e-mails</h3>
+                    <div class="radio-group">
+                        <label><input type="radio" {% if not setting.send_followups %}checked{% endif %} name="follow-up" value="no"> Don't send follow up</label>
+                        <label><input type="radio" {% if setting.send_followups %}checked{% endif %} name="follow-up" value="yes"> Send follow ups...</label>
+                    </div>
+                </div>
+                <div class="child2">
+                    <select class="custom-dropdown" id="follow-cycle" style="display: none;">
+                        <option {% if setting.follow_cycle == 3 %}selected{% endif %} value="3">Every 3 days</option>
+                        <option {% if setting.follow_cycle == 7 %}selected{% endif %} value="7">Every week</option>
+                        <option {% if setting.follow_cycle == 14 %}selected{% endif %} value="14">Every 2 weeks</option>
+                        <option {% if setting.follow_cycle == 21 %}selected{% endif %} value="21">Every 3 weeks</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block script %}
+<script>
+$(document).ready(function() {
+    send_followup = $('input[name="follow-up"]:checked').val();
+    if (send_followup == "yes") {
+        $('#follow-cycle').show();
+    }
+
+    $('input[type=radio][name=follow-up]').change(function() {
+        var status = this.value
+
+        if (this.value == 'yes'){
+            $('#follow-cycle').show();
+        } else {
+            $('#follow-cycle').hide();
+        }
+
+        $.ajax({
+            url: "{% url 'modify_followup' %}",
+            type: 'POST',
+            data: {
+                "status": status,
+                "csrfmiddlewaretoken": "{{ csrf_token }}"
+            }
+        });
+    });
+
+    function showError(message) {
+        if (!$('.error-message').length) {
+            $('<p id="error-message" style="color: red; margin-bottom: 20px;"></p>')
+                .insertBefore('.err-load');
+        }
+        $('#error-message').text(message);
+    }
+
+    // Hide error message
+    function hideError() {
+        $('#error-message').remove();
+    }
+
+    $('#follow-cycle').change(function(){
+        var cycle = $(this).val()
+
+        $.ajax({
+            url: "{% url 'modify_follow_cycle' %}",
+            type: 'POST',
+            data: {
+                "cycle": cycle,
+                "csrfmiddlewaretoken": "{{ csrf_token }}"
+            }
+        });
+    })
+
+    $('.survey_date').blur(function(){
+        var survey_date = $(this).val();
+        var survey_no = $(this).attr("data-value")
+
+        days = survey_date.substr(0,2)
+        months = survey_date.substr(3, 5)
+        if (days > 31) {
+            showError("Days can't exceed 31")
+            return;
+        } else {
+            hideError()
+        }
+
+        if (months > 12) {
+            showError("Months can't exceed 12")
+            return;
+        } else {
+            hideError()
+        }
+
+        $.ajax({
+            url: "{% url 'modify_survey_date' %}",
+            type: 'POST',
+            data: {
+                "survey_date": survey_date,
+                "survey_no": survey_no,
+                "csrfmiddlewaretoken": "{{ csrf_token }}"
+            }
+        });
+    })
+
+    $('.survey_date').on('input', function() {
+        let value = $(this).val();
+
+        // Remove any non-digit or non-slash characters
+        value = value.replace(/[^0-9/]/g, '');
+
+        // Automatically insert '/' after the day (if length is 2 and no slash)
+        if (value.length === 2 && !value.includes('/')) {
+            value += '/';
+        }
+
+        // Limit input to 5 characters (DD/MM)
+        $(this).val(value.slice(0, 5));
+    });
+});
+</script>
+{% endblock %}

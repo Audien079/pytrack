@@ -1,0 +1,509 @@
+{% extends "layouts/top.html" %}
+{% load static %}
+{% block header %}
+<title>User Profile</title>
+{% endblock %}
+{% load custom_tags %}
+
+{% block style %}
+<link href="{% static 'cpm/assets/css/user-profile.css' %}" rel="stylesheet" type="text/css" />
+<style>
+    ul.contacts-block {
+        list-style: none;
+        padding-left: 0px;
+    }
+
+    ul.contacts-block li {
+        display: flex;
+        align-items: centre;
+        margin-bottom: 10px;
+    }
+
+    ul.contacts-block li svg {
+        margin-right: 10px;
+    }
+
+    ul.contacts-block li .edit-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #007bff; /* Optional: make the pencil blue */
+      padding-left: 10px; /* Space before the button */
+    }
+
+    ul.contacts-block li .edit-btn svg {
+      vertical-align: middle; /* Ensure the icon is aligned */
+      margin-bottom: 10px;
+    }
+
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="main-content">
+    <div class="page-content">
+        <ol class="breadcrumb m-0">
+            <li class="breadcrumb-item font-size-14"><a href="/clients/">Home</a></li>
+            <li class="breadcrumb-item font-size-14 active"><a href="#">Profile</a></li>
+        </ol>
+        <p class="message mt-3" style="font: 13px; color: white; padding-left: 40px; height:25px;"></p>
+
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 layout-top-spacing mt-3">
+            <div class="user-profile layout-spacing">
+                <div class="widget-content widget-content-area podcast-title">
+                            <div class="col-xl-6 col-lg-12 col-md-12" style="width:50%;text-align:center;padding:2px;margin:0 auto">
+                                <div class="text-center user-info">
+                                    <div class="user-info-list">
+
+                                        <div class="">
+                                            <ul class="contacts-block list-unstyled" style="max-width: 300px;">
+                                                <p style="margin-right: 134px; font-size: 30px; color: #4640c2;">{{user.first_name}} {{user.last_name}}</p>
+                                                <li class="contacts-block__item">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar me-3"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg><p class="date_of_birth">{{ user.date_of_birth }}</p>
+                                                    <button user-id="{{user.id}}" class="edit-btn edit-dob">
+                                                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2"><path d="M12 20H21"></path><path d="M16.5 3.5L20.5 7.5L7 21L3 21L3 17L16.5 3.5Z"></path></svg>
+                                                    </button>
+                                                </li>
+                                                <li class="contacts-block__item">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-map-pin me-3"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg><p class="address">{{ user.address }}</p>
+                                                        <button user-id="{{user.id}}" class="edit-btn edit-address">
+                                                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2"><path d="M12 20H21"></path><path d="M16.5 3.5L20.5 7.5L7 21L3 21L3 17L16.5 3.5Z"></path></svg>
+                                                        </button>
+                                                </li>
+                                                <li class="contacts-block__item">
+                                                    <a href="mailto:example@mail.com"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail me-3"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg><span class="email">{{ user.email }}</span></a>
+                                                    <button user-id="{{user.id}}" class="edit-btn edit-email">
+                                                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2"><path d="M12 20H21"></path><path d="M16.5 3.5L20.5 7.5L7 21L3 21L3 17L16.5 3.5Z"></path></svg>
+                                                    </button>
+                                                </li>
+                                                <li class="contacts-block__item">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-phone me-3"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg><p class="phone">{{ user.phone|hyphened_number }}</p>
+                                                    <button user-id="{{user.id}}" class="edit-btn edit-phone">
+                                                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2"><path d="M12 20H21"></path><path d="M16.5 3.5L20.5 7.5L7 21L3 21L3 17L16.5 3.5Z"></path></svg>
+                                                    </button>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- episode and clips tabination -->
+                <div class="custom-tabination">
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="home-tab" data-bs-toggle="tab"
+                                data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane"
+                                aria-selected="true">Recent Answers</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="profile-tab" data-bs-toggle="tab"
+                                data-bs-target="#profile-tab-pane" type="button" role="tab"
+                                aria-controls="profile-tab-pane" aria-selected="false">Activity Log</button>
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel"
+                            aria-labelledby="home-tab" tabindex="0">
+
+                            {% if answers %}
+                            <div class="filter-block">
+                                <div class="filter-block__left">
+                                </div>
+                                <div class="filter-block__right">
+                                    <form method="GET">
+                                        <div id="div_id_search" class="form-group">
+                                            <div style="display: flex; gap: 20px;">
+                                                <input type="text" name="search" placeholder="Filter by questions name"
+                                                    class="textinput textInput form-control" id="id_search">
+                                                <button
+                                                    class="btn btn-primary btn-lg align-middle btn-block">Search</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            {% endif %}
+                            {% for answer in answers %}
+                            <div class="pod-ep">
+                                <div class="pad-ep-block">
+                                    <div class="pad-details">
+                                        <p class="ep-name">
+                                            Q{{ forloop.counter }}.  {{answer.question.question_text}}
+                                        </p>
+                                        <p>Answer: <b>{% if answer.yes_no_answer %}Yes{% else %}No{% endif %}</b></p>
+                                    </div>
+                                </div>
+
+                            </div>
+                            {% empty %}
+                            <div class="col-12">
+                                <p class="text-center" style="margin-top: 5%;">No Questionnaires Found.</p>
+                            </div>
+                            {% endfor %}
+
+
+                            <!-- Questions Pagination -->
+                            {% if is_paginated %}
+                            <div aria-label="Page navigation" style="float:right;"
+                                class="dataTables_paginate paging_simple_numbers">
+                                <ul class="pagination">
+                                    {% if page_obj.has_previous %}
+                                    <li class="paginate_button page-item previous">
+                                        <a href="?page={{ page_obj.previous_page_number }}"
+                                            class="page-link">Previous</a>
+                                    </li>
+                                    {% else %}
+                                    <li class="paginate_button page-item previous disabled">
+                                        <a href="#" class="page-link">Previous</a>
+                                    </li>
+                                    {% endif %}
+                                    {% for i in paginator.page_range %}
+                                    {% if page_obj.number == i %}
+                                    <li class="page-item"><a class="page-link active">{{ i }}</a></li>
+                                    {% elif i > page_obj.number|add:'-3' and i < page_obj.number|add:'3' %} <li
+                                        class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                                        {% endif %}
+                                        {% endfor %}
+                                        {% if page_obj.has_next %}
+                                        <li class="paginate_button page-item next">
+                                            <a href="?page={{ page_obj.next_page_number }}" class="page-link">Next</a>
+                                        </li>
+                                        {% else %}
+                                        <li class="paginate_button page-item next disabled">
+                                            <a href="#" class="page-link">Next</a>
+                                        </li>
+                                        {% endif %}
+                                </ul>
+                            </div>
+                            {% endif %}
+                        </div>
+                        <!-- End Episodes Pagination -->
+                        <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab"
+                            tabindex="0">
+                            {% for question in questionnaires %}
+                            <div class="custom-ep-block">
+                                <div class="row">
+                                    <div class="col-xl-8 col-lg-12 col-md-12">
+                                        <div class="checkbox-wrap">
+                                            <div class="left-ep-block">
+                                                <p class="ep-name">
+                                                    {% if question.is_completed %}
+                                                        {{ forloop.counter }}.  Questionnaire sent on {{question.created_at}} completed on {{question.test_date}}
+                                                    {% else %}
+                                                        {{ forloop.counter }}.  Questionnaire sent on {{question.created_at}} yet to be completed
+                                                    {% endif %}</p>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% empty %}
+                            <div class="col-12">
+                                <p class="text-center" style="margin-top: 5%;">No activity found.</p>
+                            </div>
+                            {% endfor %}
+
+                            <!-- Clips Pagination -->
+                            {% if questionnaires.has_other_pages %}
+                            <div aria-label="Page navigation" style="float:right;"
+                                class="dataTables_paginate paging_simple_numbers">
+                                <ul class="pagination">
+                                    {% if combined_clips.has_previous %}
+                                    <li class="paginate_button page-item previous">
+                                        <a href="?clips_page={{ combined_clips.previous_page_number }}"
+                                            class="page-link">Previous</a>
+                                    </li>
+                                    {% else %}
+                                    <li class="paginate_button page-item previous disabled">
+                                        <a href="#" class="page-link">Previous</a>
+                                    </li>
+                                    {% endif %}
+                                    {% for i in combined_clips.paginator.page_range %}
+                                    {% if combined_clips.number == i %}
+                                    <li class="page-item"><a class="page-link active">{{ i }}</a></li>
+                                    {% elif i > combined_clips.number|add:'-3' and i < combined_clips.number|add:'3' %}
+                                        <li class="page-item"><a class="page-link" href="?clips_page={{ i }}">{{i}}</a></li>
+                                        {% endif %}
+                                        {% endfor %}
+                                        {% if combined_clips.has_next %}
+                                        <li class="paginate_button page-item next">
+                                            <a href="?clips_page={{ combined_clips.next_page_number }}"
+                                                class="page-link">Next</a>
+                                        </li>
+                                        {% else %}
+                                        <li class="paginate_button page-item next disabled">
+                                            <a href="#" class="page-link">Next</a>
+                                        </li>
+                                        {% endif %}
+                                </ul>
+                            </div>
+                            {% endif %}
+                            <br><br>
+                        </div>
+                    </div>
+                </div>
+                <!-- episode and clips tabination -->
+            </div>
+        </div>
+    </div>
+
+</div>
+</div>
+{% endblock %}
+
+{% block script %}
+<script>
+$(document).ready(function() {
+
+    $('.edit-dob').on('click', function() {
+        var currentDate = $('.date_of_birth').text();
+        var user_id = $(this).attr('user-id');
+
+        $('.date_of_birth').replaceWith('<input type="date" id="editDOB" value="' + currentDate + '" />');
+        $(this).replaceWith('<button user-id=' + user_id + ' type="button" class="btn btn-success" id="saveDob">Save</button>');
+    });
+
+    $(document).on('click', '#saveDob', function() {
+        var updated_dob = $('#editDOB').val();
+        var user_id = $(this).attr('user-id');
+
+        $.ajax({
+            url: "{% url 'modify_user_dob' %}",
+            type: 'POST',
+            data: {
+                'updated_dob': updated_dob,
+                'user_id': user_id,
+                'csrfmiddlewaretoken': '{{ csrf_token }}'
+            },
+            success: function(response) {
+                if(response['message'] == 'success'){
+                      $(".message").html(response['data']);
+                       $(".message").show();
+                       $(".message").css("background-color", "#6dde7c");
+                       setTimeout(function(){
+                           $(".message").hide();
+                           }, 4000);
+
+                        var date = new Date(updated_dob);
+
+                        var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"];
+                        var month = monthNames[date.getMonth()];
+                        var day = date.getDate();
+                        var year = date.getFullYear();
+
+                        // Format the final string
+                        var formattedDate = month + ". " + day + ", " + year;
+                        // $('#editDOB').replaceWith('<p id="date_of_birth">' + updated_dob + '</p>');
+                        $('#editDOB').replaceWith('<p id="date_of_birth">' + formattedDate + '</p>');
+                        $('#saveDob').replaceWith('<button user-id=' + user_id + ' class="edit-btn edit-dob"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2"><path d="M12 20H21"></path><path d="M16.5 3.5L20.5 7.5L7 21L3 21L3 17L16.5 3.5Z"></path></svg></button>');
+                  }
+                  else{
+                      $(".message").html(response['data']);
+                       $(".message").show();
+                       $(".message").css("background-color", "#d9437a");
+                       setTimeout(function(){
+                           $(".message").hide();
+                           }, 4000);
+                  }
+            },
+            error: function(xhr, status, error) {
+                alert('An error occurred: ' + error);
+            }
+        });
+    });
+
+    $('.edit-address').on('click', function() {
+        var currentText = $('.address').text();
+        var user_id = $(this).attr('user-id');
+
+        $('.address').replaceWith('<input type="text" id="editInput" value="' + currentText + '" />');
+        $(this).replaceWith('<button user-id=' + user_id + ' type="button" class="btn btn-success" id="saveButton">Save</button>');
+    });
+
+    $(document).on('click', '#saveButton', function() {
+        var updatedText = $('#editInput').val();
+        var user_id = $(this).attr('user-id');
+        console.log(user_id)
+
+        $.ajax({
+            url: "{% url 'modify_user_address' %}",
+            type: 'POST',
+            data: {
+                'updated_address': updatedText,
+                'user_id': user_id,
+                'csrfmiddlewaretoken': '{{ csrf_token }}'
+            },
+            success: function(response) {
+                if(response['message'] == 'success'){
+                      $(".message").html(response['data']);
+                       $(".message").show();
+                       $(".message").css("background-color", "#6dde7c");
+                       setTimeout(function(){
+                           $(".message").hide();
+                           }, 4000);
+
+                      $('#editInput').replaceWith('<p id="editableText">' + updatedText + '</p>');
+                        $('#saveButton').replaceWith('<button user-id=' + user_id + ' class="edit-btn edit-address"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2"><path d="M12 20H21"></path><path d="M16.5 3.5L20.5 7.5L7 21L3 21L3 17L16.5 3.5Z"></path></svg></button>');
+                  }
+                  else{
+                      $(".message").html(response['data']);
+                       $(".message").show();
+                       $(".message").css("background-color", "#d9437a");
+                       setTimeout(function(){
+                           $(".message").hide();
+                           }, 4000);
+                  }
+            },
+            error: function(xhr, status, error) {
+                alert('An error occurred: ' + error);
+            }
+        });
+    });
+
+    $('.edit-email').on('click', function() {
+        var currentText = $('.email').text();
+        var user_id = $(this).attr('user-id');
+
+        $('.email').replaceWith('<input type="text" id="editEmail" value="' + currentText + '" />');
+        $(this).replaceWith('<button user-id=' + user_id + ' type="button" class="btn btn-success" id="saveEmail">Save</button>');
+    });
+
+    $(document).on('click', '#saveEmail', function() {
+        var updatedText = $('#editEmail').val();
+        var user_id = $(this).attr('user-id');
+
+        $.ajax({
+            url: "{% url 'modify_user_email' %}",
+            type: 'POST',
+            data: {
+                'updated_email': updatedText,
+                'user_id': user_id,
+                'csrfmiddlewaretoken': '{{ csrf_token }}'
+            },
+            success: function(response) {
+                if(response['message'] == 'success'){
+                      $(".message").html(response['data']);
+                       $(".message").show();
+                       $(".message").css("background-color", "#6dde7c");
+                       setTimeout(function(){
+                           $(".message").hide();
+                           }, 4000);
+
+                      $('#editEmail').replaceWith('<span id="editableEmail">' + updatedText + '</span>');
+                        $('#saveEmail').replaceWith('<button user-id=' + user_id + ' class="edit-btn edit-email"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2"><path d="M12 20H21"></path><path d="M16.5 3.5L20.5 7.5L7 21L3 21L3 17L16.5 3.5Z"></path></svg></button>');
+                  }
+                  else{
+                      $(".message").html(response['data']);
+                       $(".message").show();
+                       $(".message").css("background-color", "#d9437a");
+                       setTimeout(function(){
+                           $(".message").hide();
+                           }, 4000);
+                  }
+            },
+            error: function(xhr, status, error) {
+                alert('An error occurred: ' + error);
+            }
+        });
+    });
+
+    $('.edit-email').on('click', function() {
+        var currentText = $('.email').text();
+        var user_id = $(this).attr('user-id');
+
+        $('.email').replaceWith('<input type="text" id="editEmail" value="' + currentText + '" />');
+        $(this).replaceWith('<button user-id=' + user_id + ' type="button" class="btn btn-success" id="saveEmail">Save</button>');
+    });
+
+    $(document).on('click', '#saveEmail', function() {
+        var updatedText = $('#editEmail').val();
+        var user_id = $(this).attr('user-id');
+
+        $.ajax({
+            url: "{% url 'modify_user_email' %}",
+            type: 'POST',
+            data: {
+                'updated_email': updatedText,
+                'user_id': user_id,
+                'csrfmiddlewaretoken': '{{ csrf_token }}'
+            },
+            success: function(response) {
+                if(response['message'] == 'success'){
+                      $(".message").html(response['data']);
+                       $(".message").show();
+                       $(".message").css("background-color", "#6dde7c");
+                       setTimeout(function(){
+                           $(".message").hide();
+                           }, 4000);
+
+                      $('#editEmail').replaceWith('<span id="editableEmail">' + updatedText + '</span>');
+                        $('#saveEmail').replaceWith('<button user-id=' + user_id + ' class="edit-btn edit-email"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2"><path d="M12 20H21"></path><path d="M16.5 3.5L20.5 7.5L7 21L3 21L3 17L16.5 3.5Z"></path></svg></button>');
+                  }
+                  else{
+                      $(".message").html(response['data']);
+                       $(".message").show();
+                       $(".message").css("background-color", "#d9437a");
+                       setTimeout(function(){
+                           $(".message").hide();
+                           }, 4000);
+                  }
+            },
+            error: function(xhr, status, error) {
+                alert('An error occurred: ' + error);
+            }
+        });
+    });
+
+    $('.edit-phone').on('click', function() {
+        var currentText = $('.phone').text();
+        var user_id = $(this).attr('user-id');
+
+        $('.phone').replaceWith('<input type="text" id="editPhone" value="' + currentText + '" />');
+        $(this).replaceWith('<button user-id=' + user_id + ' type="button" class="btn btn-success" id="savePhone">Save</button>');
+    });
+
+    $(document).on('click', '#savePhone', function() {
+        var updatedText = $('#editPhone').val();
+        var user_id = $(this).attr('user-id');
+
+        $.ajax({
+            url: "{% url 'modify_user_phone' %}",
+            type: 'POST',
+            data: {
+                'updated_phone': updatedText,
+                'user_id': user_id,
+                'csrfmiddlewaretoken': '{{ csrf_token }}'
+            },
+            success: function(response) {
+                if(response['message'] == 'success'){
+                      $(".message").html(response['data']);
+                       $(".message").show();
+                       $(".message").css("background-color", "#6dde7c");
+                       setTimeout(function(){
+                           $(".message").hide();
+                           }, 4000);
+
+                      $('#editPhone').replaceWith('<span id="editablePhone">' + updatedText + '</span>');
+                        $('#savePhone').replaceWith('<button user-id=' + user_id + ' class="edit-btn edit-phone"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2"><path d="M12 20H21"></path><path d="M16.5 3.5L20.5 7.5L7 21L3 21L3 17L16.5 3.5Z"></path></svg></button>');
+                  }
+                  else{
+                      $(".message").html(response['data']);
+                       $(".message").show();
+                       $(".message").css("background-color", "#d9437a");
+                       setTimeout(function(){
+                           $(".message").hide();
+                           }, 4000);
+                  }
+            },
+            error: function(xhr, status, error) {
+                alert('An error occurred: ' + error);
+            }
+        });
+    });
+});
+
+</script>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- BEGIN GLOBAL MANDATORY STYLES -->
+    {% include 'includes/header.html' %}
+
+    {% block header %}{% endblock %}
+    {% block style %}{% endblock %}
+</head>
+<body data-topbar="dark" data-layout="horizontal" data-layout-size="boxed">
+     <div id="layout-wrapper">
+
+<!--  BEGIN NAVBAR  -->
+     {% include 'includes/top_navigation.html' %}
+<!--  END NAVBAR  -->
+
+<!--  BEGIN MAIN CONTAINER  -->
+     </div>
+     {% block content %}
+     {% endblock %}
+{% block modal %}
+{% endblock %}
+
+{% include 'includes/scripts.html' %}
+
+{% block script %}{% endblock %}
+</body>
+</html>
