@@ -28,6 +28,8 @@ INSTALLED_APPS = [
     'corsheaders',
     'users',
     'dashboard',
+    'api',
+    'website'
 ]
 
 

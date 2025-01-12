@@ -7,7 +7,7 @@ RUN apt-get update \
 RUN groupadd --gid 1000 python \
   && useradd --uid 1000 --gid python --shell /bin/bash --create-home python
 
-EXPOSE 9093
+EXPOSE 8000
 
 WORKDIR /app
 

@@ -1,0 +1,181 @@
+{% extends 'layouts/top.html' %}
+{% load static %}
+{% load custom_filters %}
+{% block header %}
+<title>{{website.web_url}}</title>
+{% endblock %}
+{% block style %}
+<link href="{% static 'assets/css/user-profile.css' %}" rel="stylesheet" type="text/css" />
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    background: #fff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    border-radius: 8px;
+}
+
+h1 {
+    font-size: 24px;
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#filter-option {
+    display: block;
+    width: 200px;
+    margin: 0 auto 20px auto;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+canvas {
+    display: block;
+    max-width: 100%;
+    max-height: 400px;
+}
+</style>
+{% endblock %}
+{% block content %}
+<div class="main-content">
+    <div class="container-fluid" style="margin-top: 145px;">
+        <div class="container">
+        <h1>Visitor Statistics</h1>
+
+        <!-- Dropdown for filters -->
+        <select id="filter-option" class="form-control">
+            <option value="last_30_days" selected>Last 30 Days</option>
+            <option value="last_7_days">Last 7 Days</option>
+            <option value="today">Today (Hourly)</option>
+            <option value="all_time">All Time</option>
+        </select>
+
+        <!-- Chart -->
+        <canvas id="visitorChart"></canvas>
+    </div>
+    </div>
+</div>
+{% endblock %}
+{% block script %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    $(document).ready(function () {
+        const ctx = document.getElementById("visitorChart").getContext("2d");
+
+        // Gradient fill for the line chart
+        const gradient = ctx.createLinearGradient(0, 0, 0, 400);
+        gradient.addColorStop(0, "rgba(75, 192, 192, 0.5)"); // Lighter blue
+        gradient.addColorStop(1, "rgba(75, 192, 192, 0.1)"); // Transparent
+
+        let visitorChart = new Chart(ctx, {
+            type: "line",
+            data: {
+                labels: [], // Placeholder
+                datasets: [
+                    {
+                        label: "Visitors",
+                        data: [], // Placeholder
+                        borderColor: "rgba(75, 192, 192, 1)",
+                        borderWidth: 2,
+                        backgroundColor: gradient,
+                        fill: true,
+                        tension: 0.3, // Smooth curve
+                        pointRadius: 4,
+                        pointBackgroundColor: "rgba(75, 192, 192, 1)",
+                    },
+                ],
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: "top",
+                        labels: {
+                            color: "#333",
+                            font: {
+                                size: 14,
+                            },
+                        },
+                    },
+                },
+                scales: {
+                    x: {
+                        grid: {
+                            display: false,
+                        },
+                        ticks: {
+                            color: "#666",
+                            font: {
+                                size: 12,
+                            },
+                        },
+                    },
+                    y: {
+                        grid: {
+                            color: "rgba(200, 200, 200, 0.2)",
+                        },
+                        ticks: {
+                            color: "#666",
+                            font: {
+                                size: 12,
+                            },
+                        },
+                    },
+                },
+                layout: {
+                    padding: {
+                        top: 20,
+                        bottom: 20,
+                    },
+                },
+            },
+        });
+
+        // Function to fetch and update chart data
+        function updateChart(filterOption) {
+            $.ajax({
+                url: "",
+                type: "POST",
+                data: {
+                    filter_option: filterOption,
+                    csrfmiddlewaretoken: "{{ csrf_token }}",
+                },
+                success: function (data) {
+                    const labels = data.map(item =>
+                        filterOption === "today"
+                            ? new Date(item.hour).toLocaleTimeString()
+                            : new Date(item.day).toLocaleDateString()
+                    );
+                    const counts = data.map(item => item.count);
+
+                    visitorChart.data.labels = labels;
+                    visitorChart.data.datasets[0].data = counts;
+                    visitorChart.update();
+                },
+            });
+        }
+
+        // Default load (Last 30 Days)
+        updateChart("last_30_days");
+
+        // Handle filter change
+        $("#filter-option").change(function () {
+            const filterOption = $(this).val();
+            updateChart(filterOption);
+        });
+    });
+</script>
+
+{% endblock %}

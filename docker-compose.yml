@@ -3,34 +3,34 @@ version: "3"
 services:
   redis:
     image: redis:6-alpine
-    container_name: cpm_redis
+    container_name: pytrack_redis
     restart: always
-  cpm-py:
+  pytrack-py:
     build: .
-    container_name: cpm-backend-py
-    command: gunicorn admin.wsgi:application --bind 0.0.0.0:9093 --workers=4
+    container_name: pytrack-backend-py
+    command: gunicorn admin.wsgi:application --bind 0.0.0.0:8000 --workers=4
     restart: always
     volumes:
       - static_cdn:/app/static-cdn
       - media:/app/media
   celery:
     build: .
-    container_name: cpm_celery
+    container_name: pytrack_celery
     command: celery -A admin worker -B -l INFO --scheduler django_celery_beat.schedulers:DatabaseScheduler
     volumes:
       - media:/app/media
   nginx:
-    container_name: cpm_nginx
+    container_name: pytrack_nginx
     image: nginx:mainline-alpine
     restart: always
     ports:
-      - 9093:80
+      - 8000:80
     volumes:
       - static_cdn:/app/static-cdn
       - media:/app/media
       - ./nginx:/etc/nginx/conf.d
     depends_on:
-      - cpm-py
+      - pytrack-py
 
 networks:
   default:
