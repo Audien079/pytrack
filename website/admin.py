@@ -1,5 +1,5 @@
 from django.contrib import admin
-from website.models import Website, PageStat
+from website.models import Website, PageStat, Visitor
 
 
 @admin.register(Website)
@@ -20,3 +20,13 @@ class PageStatAdmin(admin.ModelAdmin):
 
     list_display = ["page_url", "website", "ip_address"]
     search_fields = ["page_url"]
+
+
+@admin.register(Visitor)
+class VisitorAdmin(admin.ModelAdmin):
+    """
+    Visitor data view in admin panel
+    """
+
+    list_display = ["ip_address", "session_id"]
+    search_fields = ["ip_address"]

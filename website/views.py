@@ -1,8 +1,8 @@
-from website.models import Website, PageStat
+from website.models import Website, PageStat, Visitor
 from django.views.generic import TemplateView
 from django.http import JsonResponse
 from django.utils.timezone import now, timedelta
-from django.db.models import Count
+from django.db.models import Count, Avg
 from django.db.models.functions import TruncHour, TruncDate
 
 
@@ -36,52 +36,72 @@ class WebsiteView(TemplateView):
         """
         today = now().date()
 
+        # Determine date range and grouping
         if filter_option == "last_7_days":
             start_date = today - timedelta(days=7)
-            date_range = [start_date + timedelta(days=i) for i in range((today - start_date).days + 1)]
-            visitor_data = (
-                PageStat.objects.filter(created_at__gte=start_date)
-                .annotate(day=TruncDate("created_at"))
-                .values("day")
-                .annotate(count=Count("id"))
-                .order_by("day")
-            )
-            visitor_dict = {entry["day"]: entry["count"] for entry in visitor_data}
-            data = [{"day": day, "count": visitor_dict.get(day, 0)} for day in date_range]
+            date_range = [start_date + timedelta(days=i) for i in range(8)]
+            grouping = TruncDate("created_at")
         elif filter_option == "last_30_days":
             start_date = today - timedelta(days=30)
-            date_range = [start_date + timedelta(days=i) for i in range((today - start_date).days + 1)]
-            visitor_data = (
-                PageStat.objects.filter(created_at__gte=start_date)
-                .annotate(day=TruncDate("created_at"))
-                .values("day")
-                .annotate(count=Count("id"))
-                .order_by("day")
-            )
-            visitor_dict = {entry["day"]: entry["count"] for entry in visitor_data}
-            data = [{"day": day, "count": visitor_dict.get(day, 0)} for day in date_range]
-
+            date_range = [start_date + timedelta(days=i) for i in range(31)]
+            grouping = TruncDate("created_at")
         elif filter_option == "all_time":
-            data = list(
-                PageStat.objects.annotate(day=TruncDate("created_at"))
-                .values("day")
-                .annotate(count=Count("id"))
-                .order_by("day")
-            )
-            # visitor_dict = {entry["day"]: entry["count"] for entry in visitor_data}
-            # data = [{"day": day, "count": visitor_dict.get(day, 0)} for day in date_range]
+            start_date = None
+            date_range = None  # No specific range for all-time data
+            grouping = TruncDate("created_at")
         elif filter_option == "today":
-            data = list(
-                PageStat.objects.filter(created_at__date=today)
-                .annotate(hour=TruncHour("created_at"))
-                .values("hour")
-                .annotate(count=Count("id"))
-                .order_by("hour")
-            )
+            start_date = today
+            date_range = None  # Group by hours for today
+            grouping = TruncHour("created_at")
         else:
-            data = []
+            return []
 
-        return data
+        # Fetch and process visitor data
+        visitor_data = PageStat.objects.filter(created_at__gte=start_date) if start_date else PageStat.objects.all()
+        visitor_data = (
+            visitor_data.annotate(period=grouping)
+            .values("period")
+            .annotate(count=Count("id"))
+            .order_by("period")
+        )
+
+        # Calculate metrics
+        total_visits = visitor_data.count()
+        total_page_views = visitor_data.values("page_url").distinct().count()
+        avg_visit_duration = visitor_data.aggregate(avg_duration=Avg("visit_duration"))["avg_duration"] or 0
+        single_page_visits = visitor_data.filter(referrer__isnull=True).count()
+        bounce_rate = f"{int((single_page_visits / total_visits) * 100)}%" if total_visits else "0%"
+        unique_visitors = Visitor.objects.filter(
+            id__in=visitor_data.values_list("visitor", flat=True).distinct()
+        ).count()
+        minutes, seconds = divmod(int(avg_visit_duration), 60)
+        avg_visit_duration_str = f"{minutes}m {seconds}s"
+
+        # Prepare the filter dictionary
+        filter_dict = {
+            "total_visits": total_visits,
+            "total_page_views": total_page_views,
+            "average_visit_duration": avg_visit_duration_str,
+            "bounce_rate": bounce_rate,
+            "unique_visitors": unique_visitors,
+        }
+
+        # Add filter-specific data
+        if filter_option in {"last_7_days", "last_30_days"}:
+            visitor_dict = {entry["period"]: entry["count"] for entry in visitor_data}
+            filter_dict["filter_data"] = [
+                {"day": day, "count": visitor_dict.get(day, 0)} for day in date_range
+            ]
+        elif filter_option == "all_time":
+            filter_dict["filter_data"] = [
+                {"day": entry["period"], "count": entry["count"]} for entry in visitor_data
+            ]
+        elif filter_option == "today":
+            filter_dict["filter_data"] = [
+                {"hour": entry["period"], "count": entry["count"]} for entry in visitor_data
+            ]
+
+        return [filter_dict]
 
     def post(self, request, *args, **kwargs):
         """

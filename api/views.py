@@ -1,9 +1,10 @@
 import json, httpagentparser
+from datetime import datetime
 from django.http import JsonResponse
 from django.views import View
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
-from website.models import PageStat, Website
+from website.models import PageStat, Website, Visitor
 
 
 @method_decorator(csrf_exempt, name='dispatch')
@@ -32,13 +33,27 @@ class TrackView(View):
                 parsed_agent = httpagentparser.detect(user_agent)
                 browser = parsed_agent.get('browser', {}).get('name', 'Unknown')
 
+                visitor, created = Visitor.objects.get_or_create(
+                    ip_address=data["ipAddress"],
+                    user_agent=data["userAgent"],
+                    session_id=data["sessionId"]
+                )
+                # Calculate visit duration
+                previous_stat = PageStat.objects.filter(visitor=visitor).order_by('-created_at').first()
+                visit_duration = 0.0
+
+                if previous_stat:
+                    visit_duration = (datetime.utcnow() - previous_stat.created_at.replace(tzinfo=None)).total_seconds()
+
                 PageStat.objects.create(
                     website=website[0],
                     page_url=page_url,
                     referrer=data.get("referrer", ""),
                     user_agent=data["userAgent"],
                     browser=browser,
-                    ip_address=ip
+                    ip_address=ip,
+                    visit_duration=visit_duration,
+                    visitor=visitor
                 )
                 return JsonResponse({"status": "success"}, status=201)
 
