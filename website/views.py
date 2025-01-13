@@ -32,7 +32,7 @@ class WebsiteView(TemplateView):
 
     def get_chart_data(self, filter_option):
         """
-        Process data based on filter option.
+        Process data based on filter option and prepare data for charts.
         """
         today = now().date()
 
@@ -100,6 +100,25 @@ class WebsiteView(TemplateView):
             filter_dict["filter_data"] = [
                 {"hour": entry["period"], "count": entry["count"]} for entry in visitor_data
             ]
+
+        # Additional data: Top Pages and Browsers
+        top_pages = (
+                        PageStat.objects.filter(created_at__gte=start_date) if start_date else PageStat.objects.all()
+                    ).values("page_url").annotate(visitors=Count("id")).order_by("-visitors")[:5]
+
+        browser_data = (
+                           PageStat.objects.filter(created_at__gte=start_date) if start_date else PageStat.objects.all()
+                       ).values("browser").annotate(visitors=Count("id")).order_by("-visitors")[:5]
+
+        # Prepare data for Chart.js
+        filter_dict["top_pages"] = {
+            "labels": [entry["page_url"] for entry in top_pages],
+            "data": [entry["visitors"] for entry in top_pages],
+        }
+        filter_dict["browser_usage"] = {
+            "labels": [entry["browser"] for entry in browser_data],
+            "data": [entry["visitors"] for entry in browser_data],
+        }
 
         return [filter_dict]
 
